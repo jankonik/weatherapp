@@ -1,0 +1,10 @@
+.submit {
+  position: absolute;
+  right: 15px;
+  height: 105%;
+  width: auto;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  opacity: 0.5;
+}

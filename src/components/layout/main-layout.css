@@ -1,0 +1,11 @@
+* {
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, lightblue, aquamarine);
+}

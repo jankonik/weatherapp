@@ -1,0 +1,154 @@
+{
+  "countries": [
+    {
+      "name": "Serbia",
+      "code": "RS",
+      "icon": "../../../countryIcons/rs.png"
+    },
+    {
+      "name": "Seychelles",
+      "code": "SC",
+      "icon": "../../../countryIcons/sc.png"
+    },
+    {
+      "name": "Sierra Leone",
+      "code": "SL",
+      "icon": "../../../countryIcons/sl.png"
+    },
+    {
+      "name": "Singapore",
+      "code": "SG",
+      "icon": "../../../countryIcons/sg.png"
+    },
+    {
+      "name": "Slovakia",
+      "code": "SK",
+      "icon": "../../../countryIcons/sk.png"
+    },
+    {
+      "name": "Slovenia",
+      "code": "SI",
+      "icon": "../../../countryIcons/si.png"
+    },
+    {
+      "name": "Solomon Islands",
+      "code": "SB",
+      "icon": "../../../countryIcons/sb.png"
+    },
+    {
+      "name": "Somalia",
+      "code": "SO",
+      "icon": "../../../countryIcons/so.png"
+    },
+    {
+      "name": "South Africa",
+      "code": "ZA",
+      "icon": "../../../countryIcons/za.png"
+    },
+    {
+      "name": "South Georgia and the South Sandwich Islands",
+      "code": "GS",
+      "icon": "../../../countryIcons/gs.png"
+    },
+    {
+      "name": "Spain",
+      "code": "ES",
+      "icon": "../../../countryIcons/es.png"
+    },
+    {
+      "name": "Sri Lanka",
+      "code": "LK",
+      "icon": "../../../countryIcons/lk.png"
+    },
+    {
+      "name": "Sudan",
+      "code": "SD",
+      "icon": "../../../countryIcons/sd.png"
+    },
+    {
+      "name": "Suriname",
+      "code": "SR",
+      "icon": "../../../countryIcons/sr.png"
+    },
+    {
+      "name": "Svalbard and Jan Mayen",
+      "code": "SJ",
+      "icon": "../../../countryIcons/sj.png"
+    },
+    {
+      "name": "Swaziland",
+      "code": "SZ",
+      "icon": "../../../countryIcons/sz.png"
+    },
+    {
+      "name": "Sweden",
+      "code": "SE",
+      "icon": "../../../countryIcons/se.png"
+    },
+    {
+      "name": "Switzerland",
+      "code": "CH",
+      "icon": "../../../countryIcons/ch.png"
+    },
+    {
+      "name": "Syrian Arab Republic",
+      "code": "SY",
+      "icon": "../../../countryIcons/sy.png"
+    },
+    {
+      "name": "Taiwan, Province of China",
+      "code": "TW",
+      "icon": "../../../countryIcons/tw.png"
+    },
+    {
+      "name": "Tajikistan",
+      "code": "TJ",
+      "icon": "../../../countryIcons/tj.png"
+    },
+    {
+      "name": "Tanzania, United Republic of",
+      "code": "TZ",
+      "icon": "../../../countryIcons/tz.png"
+    },
+    {
+      "name": "Thailand",
+      "code": "TH",
+      "icon": "../../../countryIcons/th.png"
+    },
+    {
+      "name": "Timor-Leste",
+      "code": "TL",
+      "icon": "../../../countryIcons/tl.png"
+    },
+    {
+      "name": "Togo",
+      "code": "TG",
+      "icon": "../../../countryIcons/tg.png"
+    },
+    {
+      "name": "Tokelau",
+      "code": "TK",
+      "icon": "../../../countryIcons/tk.png"
+    },
+    {
+      "name": "Tonga",
+      "code": "TO",
+      "icon": "../../../countryIcons/to.png"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "code": "TT",
+      "icon": "../../../countryIcons/tt.png"
+    },
+    {
+      "name": "Tunisia",
+      "code": "TN",
+      "icon": "../../../countryIcons/tn.png"
+    },
+    {
+      "name": "Turkey",
+      "code": "TR",
+      "icon": "../../../countryIcons/tr.png"
+    }
+  ]
+}

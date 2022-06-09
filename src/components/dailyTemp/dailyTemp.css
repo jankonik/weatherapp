@@ -1,0 +1,29 @@
+.dailyTemp-container {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.day {
+  margin: 25px;
+}
+
+.temp {
+  display: flex;
+  justify-content: center;
+}
+
+.day-bold {
+  color: gray;
+}
+
+.temp-number {
+  font-size: 25px;
+  color: white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.temp-sup {
+  font-size: 13px;
+}

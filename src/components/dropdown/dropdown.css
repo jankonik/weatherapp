@@ -1,0 +1,53 @@
+.dropdown {
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  margin: auto;
+  font-size: 16px;
+  border-color: 1px solid gray;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.2s;
+  padding: 10px;
+  width: 130px;
+}
+
+.dropdown:focus {
+  opacity: 1;
+}
+
+.dropdown > .flag {
+  margin: 7px;
+  width: 30px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.dropdown > img {
+  transition: 0.3s;
+}
+
+.dropdown:hover {
+  opacity: 1;
+}
+
+.rotated {
+  transform: rotate(-180deg);
+}
+
+.noselect {
+  user-select: none;
+}
+
+.dropdown > .items {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px;
+  transition: 0.3s;
+  height: 300px;
+  overflow-y: auto;
+  top: calc(100% + 5px);
+  left: 0;
+}
