@@ -14,12 +14,11 @@ const DailyTemp = (props: any) => {
   ];
   const currentDay = moment().day();
   let concatWeekDays = weekDays.concat(weekDays.splice(0, currentDay - 1));
-  console.log(concatWeekDays);
 
   return (
     <div className="dailyTemp-container">
-      {concatWeekDays.map((day: any) => (
-        <div className="day">
+      {concatWeekDays.map((day: any, index: number) => (
+        <div key={index} className="day">
           <b className="day-bold">{day}</b>
           <div className="temp">
             <b className="temp-number">

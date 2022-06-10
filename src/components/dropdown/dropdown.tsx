@@ -22,9 +22,8 @@ const Dropdown = (props: any) => {
     icon: string;
   }) => {
     setCountry(country);
+    props.sendCodeToParent(country.code);
   };
-
-  props.sendCodeToParent(country.code);
 
   return (
     <div onClick={handleClick} className="form-control dropdown noselect">

@@ -1,42 +1,16 @@
-// let dt;
-
-// const mixa = weatherNiz.filter( (w, index) => {
-//   if(index===0) {
-//     dt = w.dt;
-//     return w;
-//   }
-
-//   if(w.dt !== dt) {
-//     dt = w.dt;
-//     return w
-//   }
-
-//   return;
-// } )
-
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { forecast } from '../components/search/search';
+import { createSlice } from '@reduxjs/toolkit';
+import { IList } from '../components/search/search';
 
 // Define a type for the slice state
 interface weatherState {
-  forecast: {
-    dt: number;
-    main: {
-      temp: number;
-    };
-    loading: boolean;
-  };
+  forecast: IList[] | null;
+  loading: boolean;
 }
 
 // Define the initial state using that type
 const initialState: weatherState = {
-  forecast: {
-    dt: 0,
-    main: {
-      temp: 0,
-    },
-    loading: false,
-  },
+  forecast: null,
+  loading: false,
 };
 
 export const weatherSlice = createSlice({
@@ -44,20 +18,36 @@ export const weatherSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    weatherRequested: (state, action) => {
-      state.forecast.loading = true;
+    loadingForecast: (
+      state,
+      { type, payload }: { type: string; payload: boolean }
+    ) => {
+      state.loading = payload;
     },
-    weatherRecieved: (state, action) => {
-      state.forecast = action.payload;
-      state.forecast.loading = false;
+    loadingForecastSuccess: (
+      state,
+      {
+        type,
+        payload,
+      }: {
+        type: string;
+        payload: {
+          forecast: IList[];
+          loading: boolean;
+        };
+      }
+    ) => {
+      state = {
+        forecast: payload.forecast,
+        loading: payload.loading,
+      };
     },
-    weatherRequestFailed: (state, action) => {
-      state.forecast.loading = false;
+    loadingForecastError: (state, action) => {
+      // logika za error handling
     },
   },
 });
 
-export const { weatherRequested, weatherRecieved, weatherRequestFailed } =
-  weatherSlice.actions;
+export const { loadingForecastSuccess, loadingForecast } = weatherSlice.actions;
 
 export default weatherSlice.reducer;

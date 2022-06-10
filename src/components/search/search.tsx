@@ -5,26 +5,30 @@ import Dropdown from '../dropdown/dropdown';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import moment from 'moment';
+import {
+  loadingForecast,
+  loadingForecastSuccess,
+} from '../../features/weatherSlice';
+import { selectCount } from '../../features/weatherSelectors';
 
 // import { weatherRequested } from '../../features/weatherSlice';
 
-interface main {
-  [key: string]: number;
+interface IMain {
+  temp: number;
+  // [key: string]: number;
 }
 
-interface list {
-  [index: number]: {
-    dt: number;
-    main: main;
-  };
+export interface IList {
+  dt: number;
+  main: IMain;
 }
 
-interface forecast {
-  list: list;
+export interface IForecast {
+  list: IList;
 }
 
 interface response {
-  data: forecast;
+  data: IForecast;
 }
 
 const Search = () => {
@@ -33,32 +37,33 @@ const Search = () => {
   const dispatch = useAppDispatch();
   let weatherNiz: any = [];
 
-  const forecast = useAppSelector((state) => state.weather.forecast);
-  console.log(forecast);
-
   const fetchData = async () => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=nis,rs&appid=a0aded824b2b4be8568ca119ec24a000`;
+    dispatch(loadingForecast(true));
     const response: response = await axios.get(url);
-    console.log(response.data.list[5].dt);
     weatherNiz = response.data.list;
-    console.log(weatherNiz);
     let day: string;
+    const wNizFilter: IList[] = weatherNiz.filter(
+      (weatherObj: any, index: number) => {
+        if (index === 0) {
+          day = moment.unix(weatherObj.dt).format('dddd');
+          return weatherObj;
+        }
 
-    const wNizFilter = weatherNiz.filter((weatherObj: any, index: number) => {
-      if (index === 0) {
-        day = moment.unix(weatherObj.dt).format('dddd');
-        console.log(day);
-        return weatherObj;
+        if (moment.unix(weatherObj.dt).format('dddd') !== day) {
+          day = moment.unix(weatherObj.dt).format('dddd');
+          return weatherObj;
+        }
+
+        return null;
       }
-
-      if (moment.unix(weatherObj.dt).format('dddd') !== day) {
-        day = moment.unix(weatherObj.dt).format('dddd');
-        return weatherObj;
-      }
-
-      return;
-    });
-    console.log(wNizFilter);
+    );
+    dispatch(
+      loadingForecastSuccess({
+        forecast: wNizFilter,
+        loading: false,
+      })
+    );
   };
 
   useEffect(() => {
