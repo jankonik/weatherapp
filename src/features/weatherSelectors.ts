@@ -1,3 +1,4 @@
 import { RootState } from '../app/store';
 
-export const selectCount = (state: RootState) => state.weather.forecast;
+export const selectForecast = (state: RootState) => state.weather.forecast;
+export const selectLoading = (state: RootState) => state.weather.loading;

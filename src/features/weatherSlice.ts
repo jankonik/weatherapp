@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IList } from '../components/search/search';
+import { AxiosError } from 'axios';
 
 // Define a type for the slice state
 interface weatherState {
   forecast: IList[] | null;
+  message: boolean;
   loading: boolean;
 }
 
 // Define the initial state using that type
 const initialState: weatherState = {
   forecast: null,
+  message: false,
   loading: false,
 };
 
@@ -37,17 +40,19 @@ export const weatherSlice = createSlice({
         };
       }
     ) => {
-      state = {
-        forecast: payload.forecast,
-        loading: payload.loading,
-      };
+      state.forecast = payload.forecast;
+      state.loading = payload.loading;
     },
-    loadingForecastError: (state, action) => {
-      // logika za error handling
+    loadingForecastError: (
+      state,
+      { type, payload }: { type: string; payload: boolean }
+    ) => {
+      state.message = payload;
     },
   },
 });
 
-export const { loadingForecastSuccess, loadingForecast } = weatherSlice.actions;
+export const { loadingForecastSuccess, loadingForecast, loadingForecastError } =
+  weatherSlice.actions;
 
 export default weatherSlice.reducer;
