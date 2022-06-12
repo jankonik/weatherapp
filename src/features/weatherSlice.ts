@@ -5,14 +5,14 @@ import { AxiosError } from 'axios';
 // Define a type for the slice state
 interface weatherState {
   forecast: IList[] | null;
-  message: boolean;
+  errorMessage: string;
   loading: boolean;
 }
 
 // Define the initial state using that type
 const initialState: weatherState = {
   forecast: null,
-  message: false,
+  errorMessage: '',
   loading: false,
 };
 
@@ -45,9 +45,11 @@ export const weatherSlice = createSlice({
     },
     loadingForecastError: (
       state,
-      { type, payload }: { type: string; payload: boolean }
+      { type, payload }: { type: string; payload: string }
     ) => {
-      state.message = payload;
+      state.errorMessage = payload;
+      state.loading = false;
+      state.forecast = null;
     },
   },
 });

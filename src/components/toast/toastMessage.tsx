@@ -6,7 +6,7 @@ import store from '../../app/store';
 
 const ToastMessage = () => {
   const forecast = useAppSelector((state) => state.weather.forecast);
-  const error = useAppSelector((state) => state.weather.message);
+  const error = useAppSelector((state) => state.weather.errorMessage);
   const showToast = () => {
     toast.error('City not found');
   };

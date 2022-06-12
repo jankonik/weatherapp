@@ -1,12 +1,18 @@
 .dailyTemp-container {
   display: flex;
-  margin: auto;
   justify-content: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  flex-wrap: wrap;
 }
 
 .day {
   margin: 25px;
+}
+
+@media (max-width: 600px) {
+  .day {
+    margin: 15px;
+  }
 }
 
 .temp {

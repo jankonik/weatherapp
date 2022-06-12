@@ -1,9 +1,6 @@
 .container {
   display: flex;
-  /* margin-bottom: 70px; */
-  /* margin-top: 170px; */
   align-items: center;
-  width: 600px;
   gap: 20px;
   padding: 10px;
   background-color: white;
@@ -13,4 +10,17 @@
   transition: 0.1s;
   justify-content: space-between;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 100px;
+}
+
+@media (max-width: 600px) {
+  .container .clouds {
+    display: none;
+  }
+
+  .container {
+    margin-bottom: 50px;
+  }
 }

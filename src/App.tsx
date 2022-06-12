@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from './components/layout/main-layout';
 import Search from './components/search/search';
 import AvgTemp from './components/avgTemp/avgTemp';
@@ -10,15 +10,19 @@ import store from './app/store';
 import { loadingForecastError } from './features/weatherSlice';
 
 function App() {
-  const error = useAppSelector((state) => state.weather.message);
+  const error = useAppSelector((state) => state.weather.errorMessage);
   const dispatch = useAppDispatch();
-  if (error) {
-    toast.error('Error!', {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
-      hideProgressBar: true,
-    });
-  }
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
+      dispatch(loadingForecastError(''));
+    }
+  }, [error]);
 
   return (
     <div className="App">

@@ -1,45 +1,49 @@
-.input-container {
-  position: relative;
-  transition: 0.3s;
-  height: 100%;
-  background: transparent;
+.hovered {
+  opacity: 1;
+  border: 1px solid #1d84b5;
 }
 
-.input-container:hover {
+.input-container {
+  position: relative;
+  height: 100%;
+  background: transparent;
+  width: 100%;
+  flex: 3;
+}
+
+.input-container > button {
+  opacity: 0.3;
+}
+
+.input-container > button.hovered {
   opacity: 1;
 }
 
 .input {
-  /* padding-right: 100px; */
-  transition: 0.3s;
-  width: 300px;
+  width: 100%;
   padding-left: 10px;
+  transition: all 0.3s;
 }
 
-.input-container > img {
+.input-container > button {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.2;
-  transition: 0.3s;
   background: transparent;
 }
 
-.input:hover,
+.input-container > button {
+  transition: all 0.3s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 .input:focus {
   opacity: 1;
   border: 1px solid #1d84b5;
   background-color: white;
-}
-
-.input:not(:placeholder-shown) {
-  opacity: 0.7;
-  background-color: white;
-}
-
-img.hovered {
-  opacity: 1;
 }
 
 .lds-ring {
@@ -58,8 +62,8 @@ img.hovered {
   width: 25px;
   height: 25px;
   margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
+  border: 3px solid #fff;
+  border-radius: 70%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: black transparent transparent transparent;
 }

@@ -1,11 +1,21 @@
 * {
-  margin: auto;
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
 }
 
 .main {
   display: flex;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+  overflow-y: auto;
+}
+
+.background {
+  overflow-y: auto;
+  height: 100vh;
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
 }

@@ -1,22 +1,20 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import './search.css';
 import TextBox from '../textbox/textbox';
 import Dropdown from '../dropdown/dropdown';
 import axios from 'axios';
 import { AxiosError } from 'axios';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import moment from 'moment';
 import {
   loadingForecast,
   loadingForecastError,
   loadingForecastSuccess,
 } from '../../features/weatherSlice';
-
-// import { weatherRequested } from '../../features/weatherSlice';
+import { toast } from 'react-toastify';
 
 interface IMain {
   temp: number;
-  // [key: string]: number;
 }
 
 export interface IList {
@@ -32,69 +30,54 @@ interface response {
   data: IForecast;
 }
 
-type ServerError = { errorMessage: string };
-
-const Search = (props: any) => {
+const Search = () => {
   const [searchLocation, setSearchLocation] = useState('');
-  const [code, setCode] = useState('');
   const [formData, setFormData] = useState({
     countryCode: '',
     location: '',
   });
 
   const dispatch = useAppDispatch();
-  let weatherNiz: any = [];
 
   const fetchData = async () => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${formData.location},${formData.countryCode}&appid=a0aded824b2b4be8568ca119ec24a000&units=metric`;
     dispatch(loadingForecast(true));
     try {
       const response: response = await axios.get(url);
-      weatherNiz = response.data.list;
-      dispatch(loadingForecastError(false));
+      const weatherNiz: any = response.data.list;
+      let day: string;
+      const wNizFilter: IList[] = weatherNiz.filter(
+        (weatherObj: IList, index: number) => {
+          if (index === 0) {
+            day = moment.unix(weatherObj.dt).format('dddd');
+            return weatherObj;
+          }
+
+          if (moment.unix(weatherObj.dt).format('dddd') !== day) {
+            day = moment.unix(weatherObj.dt).format('dddd');
+            return weatherObj;
+          }
+
+          return null;
+        }
+      );
+      dispatch(
+        loadingForecastSuccess({
+          forecast: wNizFilter,
+          loading: false,
+        })
+      );
     } catch (error) {
-      const serverError = error as AxiosError<ServerError>;
-      dispatch(loadingForecastError(true));
+      const serverError = error as AxiosError;
+      dispatch(loadingForecastError(serverError.message));
     }
-    let day: string;
-    const wNizFilter: IList[] = weatherNiz.filter(
-      (weatherObj: any, index: number) => {
-        if (index === 0) {
-          day = moment.unix(weatherObj.dt).format('dddd');
-          return weatherObj;
-        }
-
-        if (moment.unix(weatherObj.dt).format('dddd') !== day) {
-          day = moment.unix(weatherObj.dt).format('dddd');
-          return weatherObj;
-        }
-
-        return null;
-      }
-    );
-    dispatch(
-      loadingForecastSuccess({
-        forecast: wNizFilter,
-        loading: false,
-      })
-    );
   };
 
-  useEffect(() => {
-    // dispatch(weatherRequested(fetchData()));
-  }, []);
-
   const sendCodeToParent = (countryCode: string) => {
-    setCode(countryCode);
     setFormData({
       ...formData,
       countryCode: countryCode,
     });
-    console.log(code);
-  };
-
-  const handleInputSubmit = (location: string) => {
-    console.log(location);
   };
 
   const handleKeyPress = (
@@ -111,24 +94,26 @@ const Search = (props: any) => {
   };
 
   const handleOnClick = (text: string) => {
-    console.log('icon clicked');
     setSearchLocation(searchLocation);
     setFormData({
       ...formData,
       location: text,
     });
-    fetchData();
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetchData();
+    if (formData.location != '') {
+      fetchData();
+    } else {
+      toast.error('Location not provided!');
+    }
   };
-  console.log(formData);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="container">
       <img
+        className="clouds"
         src="https://cdn-icons-png.flaticon.com/512/4064/4064269.png"
         alt="cloudy"
         width="50px"

@@ -55,7 +55,7 @@ html:focus-within {
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   text-rendering: optimizeSpeed;
   /* //   line-height: 1.5; */

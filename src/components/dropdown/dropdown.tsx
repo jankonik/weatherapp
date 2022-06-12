@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './dropdown.css';
 import { useState } from 'react';
 import data from '../../assets/countries.json';
 import DropdownOptions from './dropdownOptions';
 
-const Dropdown = (props: any) => {
+export interface ICountry {
+  name: string;
+  code: string;
+  icon: string;
+}
+
+interface ISendCode {
+  sendCodeToParent: (code: string) => void;
+}
+
+const Dropdown = (props: ISendCode) => {
   const [isOpened, setIsOpened] = useState(false);
   const [country, setCountry] = useState(data.countries[0]);
+
+  useEffect(() => {
+    props.sendCodeToParent(country.code);
+  }, []);
 
   function handleClick() {
     if (!isOpened) {
@@ -16,11 +30,7 @@ const Dropdown = (props: any) => {
     }
   }
 
-  const handleClickOption = (country: {
-    name: string;
-    code: string;
-    icon: string;
-  }) => {
+  const handleClickOption = (country: ICountry) => {
     setCountry(country);
     props.sendCodeToParent(country.code);
   };

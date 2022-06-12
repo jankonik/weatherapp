@@ -1,4 +1,4 @@
-const colors: string[] = [
+let colors1: string[] = [
   '#060081',
   '#070583',
   '#090a85',
@@ -79,4 +79,11 @@ const colors: string[] = [
   '#fa8805',
   '#ff8700',
 ];
-export default colors;
+let colors: string[] = [];
+
+for (let i = 0; i < colors1.length; i++) {
+  colors.push(colors1[i]);
+  i++;
+}
+
+export default colors1;
