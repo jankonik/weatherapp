@@ -103,10 +103,14 @@ const Search = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (formData.location != '') {
+    if (formData.location !== '') {
+      e.preventDefault();
       fetchData();
     } else {
-      toast.error('Location not provided!');
+      toast.error('Location not provided!', {
+        autoClose: 2000,
+        hideProgressBar: true,
+      });
     }
   };
 

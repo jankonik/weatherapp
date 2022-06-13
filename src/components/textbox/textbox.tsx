@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './textbox.css';
 import { useAppSelector } from '../../app/hooks';
 
@@ -13,6 +13,8 @@ interface ItextBox {
 const TextBox = (props: ItextBox) => {
   const [isHover, setIsHover] = useState(false);
   const [inputText, setInputText] = useState('');
+
+  useEffect(() => {}, []);
 
   const isLoading = useAppSelector((state) => state.weather.loading);
   return (

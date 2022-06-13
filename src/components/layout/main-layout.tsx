@@ -1,9 +1,7 @@
-import React, { FC, ReactNode } from 'react';
-import Search from '../search/search';
+import React, { ReactNode } from 'react';
 import './main-layout.css';
 import colors1 from '../../assets/colors';
 import { useAppSelector } from '../../app/hooks';
-import store from '../../app/store';
 
 interface IChildren {
   children: ReactNode;
@@ -14,7 +12,6 @@ const Layout = ({ children }: IChildren) => {
   let length: number = 0;
   let avg: number;
   let color: string = '';
-  let avgTemp: number = 0;
 
   const forecast = useAppSelector((state) => state.weather.forecast);
   forecast?.forEach((obj) => {
@@ -27,26 +24,24 @@ const Layout = ({ children }: IChildren) => {
 
   return (
     <>
-      {forecast && (
-        <div
-          className="background"
-          style={{
-            backgroundImage: `linear-gradient(to bottom right, lightblue, ${color})`,
-          }}
-        >
-          <main className="main">{children}</main>
-        </div>
-      )}
-      {(!forecast || !forecast?.length) && (
-        <div
-          className="background"
-          style={{
-            backgroundImage: `linear-gradient(to bottom right, lightblue, antiquewhite)`,
-          }}
-        >
-          <main className="main">{children}</main>
-        </div>
-      )}
+      <div
+        className="background"
+        style={
+          forecast
+            ? {
+                backgroundImage: `linear-gradient(to bottom right, lightblue, ${color}`,
+              }
+            : !forecast
+            ? {
+                backgroundImage: `linear-gradient(to bottom right, lightblue, antiquewhite`,
+              }
+            : {
+                backgroundImage: `linear-gradient(to bottom right, lightblue, antiquewhite`,
+              }
+        }
+      >
+        <main className="main">{children}</main>
+      </div>
     </>
   );
 };

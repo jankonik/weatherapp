@@ -6,7 +6,6 @@ import DailyTemp from './components/dailyTemp/dailyTemp';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector, useAppDispatch } from './app/hooks';
-import store from './app/store';
 import { loadingForecastError } from './features/weatherSlice';
 
 function App() {
@@ -15,8 +14,8 @@ function App() {
 
   useEffect(() => {
     if (error) {
-      toast.error(error, {
-        position: toast.POSITION.TOP_CENTER,
+      toast.error('City not found!', {
+        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
         hideProgressBar: true,
       });
